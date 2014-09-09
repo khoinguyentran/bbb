@@ -61,6 +61,9 @@ include /boot/loader.4th
 start
 check-password
 __EOF__
+	cat > $MNT_DIR/boot/loader.conf << __EOF__
+autoboot_delay="-1"
+__EOF__
 
 	echo "Configure fstab"
 	cat > $MNT_DIR/etc/fstab << __EOF__
