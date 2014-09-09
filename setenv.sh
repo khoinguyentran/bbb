@@ -18,6 +18,7 @@ export __CROSS_COMPILER_GCC=arm-eabi-
 
 # Post-build configuration.
 export HOSTNAME=bbb
+export BBB_ROOT_PASSWORD=root
 export BBB_USER_NAME=nguyen
 export BBB_USER_FULLNAME="Tran Khoi Nguyen"
 export BBB_USER_PASSWORD=freemind

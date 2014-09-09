@@ -84,8 +84,22 @@ ntpdate_flags="-bug 0,us.pool.ntp.org"
 fsck_y_enable="YES"
 background_fsck="NO"
 devd_enable="YES"
-
 __EOF__
+
+	echo "Set root password to root"
+	echo ${BBB_ROOT_PASSWORD} | pw -V $MNT_DIR/etc usermod root -h 0
+	echo "Permit root ssh login"
+	cat > $MNT_DIR/etc/ssh/sshd_config << __EOF__
+PermitRootLogin	yes
+__EOF__
+
+	echo "Add ${BBB_USER_NAME} to user list"
+	echo $BBB_USER_PASSWORD | pw -V $MNT_DIR/etc useradd -h 0 -n $BBB_USER_NAME -c \"$BBB_USER_FULLNAME\" -s /bin/sh -m
+	pw -V $MNT_DIR/etc groupmod wheel -m $BBB_USER_NAME
+	BBB_USER_UID=`pw -V $MNT_DIR/etc usershow $BBB_USER_NAME | cut -f 3 -d :`
+	BBB_USER_GID=`pw -V $MNT_DIR/etc usershow $BBB_USER_NAME | cut -f 4 -d :`
+	mkdir -p $MNT_DIR/home/$BBB_USER_NAME
+	chown $BBB_USER_UID:$BBB_USER_GID $MNT_DIR/home/$BBB_USER_NAME
 
 	umount $MNT_DIR
 
