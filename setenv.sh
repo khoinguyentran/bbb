@@ -50,7 +50,7 @@ export IMG_NAME=bboneblk.img
 export IMG_SIZE=512 # MB
 export IMG=$WORKSPACE/$IMG_NAME
 export MNT_DIR=/mnt
-export UFS_JOURNAL_SIZE=32 # MB
+export UFS_JOURNAL_SIZE=4 # MB
 export BOOTPART_SIZE=2 # MB
 export FAT_START_BLOCK=63
 

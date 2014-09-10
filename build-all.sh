@@ -15,15 +15,12 @@ set -e
 # Print build environment.
 print_env
 
-echo ${__BUILDKERNEL_EXTRA_ARGS}
-echo ${__BUILDWORLD_EXTRA_ARGS}
-
 # Actual build.
 build_xdev
-#build_world
-#build_kernel
-#build_uboot
-#build_ubldr
+build_world
+build_kernel
+build_uboot
+build_ubldr
 create_image
 populate_image
 

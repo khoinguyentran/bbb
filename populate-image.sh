@@ -65,8 +65,12 @@ __EOF__
 autoboot_delay="-1"
 __EOF__
 
+	echo "Create /boot/msdos for mounting of boot FAT partition"
+	mkdir -p $MNT_DIR/boot/msdos
+
 	echo "Configure fstab"
 	cat > $MNT_DIR/etc/fstab << __EOF__
+/dev/mmcsd0s1	/boot/msdos	msdosfs	rw,noatime	0	0
 /dev/mmcsd0s2a	/	ufs	rw,noatime	1	1
 md	/tmp	mfs	rw,noatime,-s30m	0	0
 md	/var/log	mfs	rw,noatime,-s15m	0	0
@@ -100,6 +104,9 @@ __EOF__
 	BBB_USER_GID=`pw -V $MNT_DIR/etc usershow $BBB_USER_NAME | cut -f 4 -d :`
 	mkdir -p $MNT_DIR/home/$BBB_USER_NAME
 	chown $BBB_USER_UID:$BBB_USER_GID $MNT_DIR/home/$BBB_USER_NAME
+
+	echo "Overlay custom files"
+	(cd ${WORKSPACE}/overlay; find . | cpio -pmud ${MNT_DIR})
 
 	umount $MNT_DIR
 
