@@ -6,7 +6,7 @@ export __SRC_CONF=$WORKSPACE/src.conf
 export __MAKE_CONF=$WORKSPACE/make.conf
 export __BUILDWORLD_CONF=$WORKSPACE/buildworld.conf
 export __INSTALLWORLD_CONF=$WORKSPACE/installworld.conf
-export UBOOT_DIR=/home/nguyen/repo/u-boot-2013.04
+export UBOOT_DIR=/home/nguyen/repo/u-boot-2014.04
 export DTC=/home/nguyen/repo/dtc/dtc
 
 # For kernel build.
