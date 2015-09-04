@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # External sources.
 export SRCROOT=/home/nguyen/repo/freebsd_src
 export __SRC_CONF=$WORKSPACE/src.conf
